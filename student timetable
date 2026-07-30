@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CICT Student Timetable</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+            margin-top: 20px;
+        }
+        caption {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+    </style>
+</head>
+<body>
+
+    <table>
+        <caption>CICT Weekly Class Timetable - July 2026 Semester</caption>
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Unit Code</th>
+                <th>Unit Name</th>
+                <th>Time</th>
+                <th>Lecturer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>MONDAY</td>
+                <td>CICT 015</td>
+                <td>Fundamentals of Computer Networks</td>
+                <td>11:00 a.m- 2:00 p.m</td>
+                <td>Mr. James Ndwiga</td>
+            </tr>
+            <tr>
+                <td>TUESDAY</td>
+                <td>CICT 019</td>
+                <td>Computer Operating Systems</td>
+                <td>2:00 p.m- 5:00 p.m</td>
+                <td>Mr. James Ndwiga</td>
+            </tr>
+            <tr>
+                <td>WEDNESDAY</td>
+                <td>CICT 017</td>
+                <td>Introduction to Web Design</td>
+                <td>11:00 a.m- 2:00 p.m</td>
+                <td>Ezra Chege</td>
+            </tr>
+            <tr>
+                <td>THURSDAY</td>
+                <td>CICT 012</td>
+                <td>Introduction to Computer Applications</td>
+                <td>8:00 am - 11:00 am</td>
+                <td>Moses Wafula</td>
+            </tr>
+            <tr>
+                <td>FRIDAY</td>
+                <td>CICT 016</td>
+                <td>Computer Hardware &amp; Software Support</td>
+                <td>11:00 a.m- 2:00 p.m</td>
+                <td>Ezra Chege</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

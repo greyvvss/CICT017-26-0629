@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clothes Store</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background: #faf8f5;
+      color: #2b2b2b;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    h1.heading1 {
+      color: darkred;
+      text-align: center;
+    }
+
+    h2.heading2 {
+      color: #0077aa;
+      margin-top: 40px;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .gallery img {
+      border-radius: 8px;
+    }
+
+    .videos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .music-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .music-list li {
+      margin-bottom: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      border: 1px solid #ccc;
+      margin: 20px 0;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      text-align: left;
+      border: 1px solid #ddd;
+      font-size: 0.92rem;
+    }
+
+    th {
+      background: #1f1f1f;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      border: 1px solid #444;
+    }
+
+    tr:hover td {
+      background: #f5f1ea;
+    }
+
+    .price {
+      font-weight: 600;
+    }
+
+    .id {
+      color: #999;
+      font-weight: 600;
+    }
+
+    form {
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      max-width: 400px;
+      margin: 20px 0;
+    }
+
+    form label {
+      font-weight: bold;
+    }
+
+    form input, form select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    form button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: darkred;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background: #a30000;
+    }
+
+    footer {
+      background-color: #0047AB;
+      color: #ffffff;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 50px;
+    }
+
+    footer .contact-line {
+      font-size: 1.1em;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+
+    footer .copyright {
+      margin-top: 25px;
+      font-size: 1em;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <h1 class="heading1"><u>Clothes Store</u></h1>
+    <p><i>Welcome to our online clothing store, where fashion meets quality and affordability. We offer a wide selection of stylish clothing for men, women, and children, carefully chosen to suit different tastes, occasions, and lifestyles.</i></p>
+    <p><i>Our collection includes casual wear, formal attire, sportswear, seasonal outfits, and fashionable accessories designed to help you express your unique personality and style. We carefully select every product to ensure it meets high standards of comfort, durability, and modern fashion trends.</i></p>
+    <p><i>We believe that everyone deserves to look and feel confident without spending a fortune. That's why we are committed to providing high-quality clothing at competitive prices while making online shopping simple, secure, and convenient. Our easy-to-use website allows you to browse categories, compare products, and place orders from the comfort of your home.</i></p>
+    <p><i>Customer satisfaction is at the heart of everything we do. We strive to provide excellent customer service, fast order processing, reliable delivery, and a smooth shopping experience from the moment you visit our website until your purchase reaches your doorstep.</i></p>
+    <p><i>Whether you're updating your wardrobe, shopping for a special occasion, or looking for everyday essentials, our online store has something for everyone. Thank you for choosing us—we look forward to helping you discover fashionable clothing that matches your style, fits your needs, and offers great value for your money.</i></p>
+
+    <h2 class="heading2">About us</h2>
+    <p><b>Our store offers a carefully selected collection of clothing for men, women, and children, including casual wear, formal outfits, sportswear, and seasonal fashion. Every item is chosen with comfort, durability, and modern trends in mind, ensuring that our customers receive products they can trust and enjoy.</b></p>
+    <p><mark>Our mission is to make fashion accessible to everyone by offering high-quality clothing at affordable prices. We believe shopping should be easy, convenient, and enjoyable, which is why we are committed to providing a user-friendly website, secure online shopping, and reliable delivery services.</mark></p>
+
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="IMG_20260804_105505.jpg" alt="Description" width="200">
+      <img src="IMG_20260804_105516.jpg" alt="Description" width="200">
+      <img src="IMG_20260804_105709.jpg" alt="Description" width="200">
+      <img src="IMG_20260804_105718.jpg" alt="Description" width="200">
+      <img src="IMG_20260804_105728.jpg" alt="Description" width="200">
+    </div>
+
+    <h2>Category price range</h2>
+    <div class="videos">
+      <video src="VID_20260804_112053.mp4" controls width="200"></video>
+      <video src="VID_20260804_111943.mp4" controls width="200"></video>
+      <video src="Carrie Wahu_e70500ad0d4a43cbb8afc4060e46b688.mp4" controls width="200"></video>
+    </div>
+
+    <h2>Music</h2>
+    <ol class="music-list">
+      <li>
+        <audio controls>
+          <source src="Phillip Antony - wish x chuckyy 2026-05-03 18_57.m4a" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </li>
+      <li>
+        <audio controls>
+          <source src="Phillip Antony - masterpiece king 2026-04-04 10_56.m4a" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </li>
+    </ol>
+
+    <h3>Clothing Store Product Catalog</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Product ID</th>
+          <th>Product Name</th>
+          <th>Category</th>
+          <th>Size</th>
+          <th>Price (KSh)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="id">P001</td>
+          <td>Classic T-Shirt</td>
+          <td>Men's Wear</td>
+          <td>M</td>
+          <td class="price">1,200</td>
+        </tr>
+        <tr>
+          <td class="id">P002</td>
+          <td>Denim Jacket</td>
+          <td>Women's Wear</td>
+          <td>L</td>
+          <td class="price">3,500</td>
+        </tr>
+        <tr>
+          <td class="id">P003</td>
+          <td>Hooded Sweatshirt</td>
+          <td>Unisex</td>
+          <td>XL</td>
+          <td class="price">2,800</td>
+        </tr>
+        <tr>
+          <td class="id">P004</td>
+          <td>Summer Dress</td>
+          <td>Women's Wear</td>
+          <td>S</td>
+          <td class="price">2,200</td>
+        </tr>
+        <tr>
+          <td class="id">P005</td>
+          <td>Cargo Trousers</td>
+          <td>Men's Wear</td>
+          <td>34</td>
+          <td class="price">2,600</td>
+        </tr>
+        <tr>
+          <td class="id">P006</td>
+          <td>Sports Shoes</td>
+          <td>Footwear</td>
+          <td>42</td>
+          <td class="price">4,500</td>
+        </tr>
+        <tr>
+          <td class="id">P007</td>
+          <td>Leather Belt</td>
+          <td>Accessories</td>
+          <td>One Size</td>
+          <td class="price">1,500</td>
+        </tr>
+        <tr>
+          <td class="id">P008</td>
+          <td>Wool Scarf</td>
+          <td>Accessories</td>
+          <td>One Size</td>
+          <td class="price">1,800</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>Contact Form</h4>
+    <form action="#" method="POST">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+      <label for="country">Country</label>
+      <select id="country" name="country" required>
+        <option value="">-- Select your country --</option>
+        <option value="US">United States</option>
+        <option value="CA">Canada</option>
+        <option value="UK">United Kingdom</option>
+        <option value="AU">Australia</option>
+        <option value="PH">Philippines</option>
+        <option value="IN">India</option>
+        <option value="DE">Germany</option>
+        <option value="FR">France</option>
+        <option value="JP">Japan</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required minlength="6">
+
+      <button type="submit">Submit</button>
+    </form>
+
+  </div>
+
+  <footer>
+    <div class="contact-line">📍 Nairobi, Kenya</div>
+    <div class="contact-line">📞 0100664227</div>
+    <div class="copyright">© 2026 Clothes Store. All Rights Reserved.</div>
+  </footer>
+
+</body>
+</html>

@@ -1,212 +1,527 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
-<head> 
- <meta charset="UTF-8">
- <meta name="viewport content="width=device-width,initial scale=1.0">
- <title>Clothes Store</title> 
-</head>  
-<body>
- <style>
-.heading1 {color: darkred;}
-</style>
-<h1 class="heading1"><u>Clothes Store</u></h1>
-  <p1><i>Welcome to our online clothing store, where fashion meets quality and affordability. We offer a wide selection of stylish clothing for men, women, and children, carefully chosen to suit different tastes, occasions, and lifestyles.
-
-Our collection includes casual wear, formal attire, sportswear, seasonal outfits, and fashionable accessories designed to help you express your unique personality and style. We carefully select every product to ensure it meets high standards of comfort, durability, and modern fashion trends.
-
-We believe that everyone deserves to look and feel confident without spending a fortune. That's why we are committed to providing high-quality clothing at competitive prices while making online shopping simple, secure, and convenient. Our easy-to-use website allows you to browse categories, compare products, and place orders from the comfort of your home.
-
-Customer satisfaction is at the heart of everything we do. We strive to provide excellent customer service, fast order processing, reliable delivery, and a smooth shopping experience from the moment you visit our website until your purchase reaches your doorstep.
-
-Whether you're updating your wardrobe, shopping for a special occasion, or looking for everyday essentials, our online store has something for everyone. Thank you for choosing us—we look forward to helping you discover fashionable clothing that matches your style, fits your needs, and offers great value for your money.</i></p1>
- 
-  <style>
-  .heading2{color: cyan;}
-  </style>
- <h2 class="heading2">About us</h2>
-   <p2><b>Our store offers a carefully selected collection of clothing for men, women, and children, including casual wear, formal outfits, sportswear, and seasonal fashion. Every item is chosen with comfort, durability, and modern trends in mind, ensuring that our customers receive products they can trust and enjoy.</b></p2>
-  
-<p3><mark>Our mission is to make fashion accessible to everyone by offering high-quality clothing at affordable prices. We believe shopping should be easy, convenient, and enjoyable, which is why we are committed to providing a user-friendly website, secure online shopping, and reliable delivery services.</mark></p3>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clothes Store</title>
 <style>
- .heading3{colour: cyan;}
- </style>
- <h3>Gallery Photos & Videos</h3>
- <h3>Photos</h3>
- <div class="gallery">
-   <p><sup>st</sup></p><img src="IMG_20260804_105505.jpg" alt="Description" width="200" style="border-radius: 8px;">. 
-   <p><sup>nd</sup></p><img src="IMG_20260804_105516.jpg" alt="Description" width="200" style="border-radius: 8px;">. 
-   <p><sup>rd</sup></p><img src="IMG_20260804_105709.jpg" alt="Description" width="200" style="border-radius: 8px;">.
-   <p><sup>th</sup></p><img src="IMG_20260804_105718.jpg" alt="Description" width="200" style="border-radius: 8px;">
-   <sup>th</sup> <img src="IMG_20260804_105728.jpg" alt="Description" width="200" style="border-radius: 8px;">
- </div>
- 
- <h3>Videos</h3>
- <div class="videos">
-  <video src="VID_20260804_112053.mp4" alt="Description" controls width="200"></video>.
-  <video src="VID_20260804_111943.mp4" alt="Description"controls width="200"></video>. 
-  <video src="Carrie Wahu_e70500ad0d4a43cbb8afc4060e46b688.mp4" alt="Description" controls width="200"></video>.
- </div>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
 
-  <h2>Music</h2>
-  <ol> 
-  <li><audio controls>
-  <source src="Phillip Antony - wish x chuckyy 2026-05-03 18_57.m4a" type="audio/mpeg">
-  Your browser does not support the audio element.
-   </audio></li>
-  <li><audio controls>
-  <source src="Phillip Antony - masterpiece king 2026-04-04 10_56.m4a" type="audio/mpeg">
-  Your browser does not support the audio element.
-   </audio></li>
+  :root{
+    --ink: #1c1a17;
+    --paper: #f7f4ee;
+    --panel: #ffffff;
+    --gold: #a8792f;
+    --gold-deep: #7c5a22;
+    --line: #e4ddd0;
+    --muted: #6f665a;
+  }
 
-   
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+  }
+  img{ max-width:100%; display:block; }
 
- <h3><title>Clothing Store Product Catalog</title></h3>
-<style>
-  body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    background: #faf8f5;
-    color: #2b2b2b;
-    padding: 40px 20px;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-    border: 1px solid #ccc;
-  }
-  th, td {
-    padding: 12px 14px;
-    text-align: left;
-    border: 1px solid #ddd;
-    font-size: 0.92rem;
-  }
-  th {
-    background: #1f1f1f;
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-    border: 1px solid #444;
-  }
-  tr:hover td {
-    background: #f5f1ea;
-  }
-  .price {
+  h1, h2, h3, h4{
+    font-family: 'Fraunces', serif;
     font-weight: 600;
+    letter-spacing: -0.01em;
   }
-  .id {
-    color: #999;
-    font-weight: 600;
+
+  a{ color: var(--gold-deep); }
+
+  /* ===== Header / Hero ===== */
+  header.hero{
+    padding: 90px 8vw 70px;
+    text-align:center;
+    border-bottom: 1px solid var(--line);
+  }
+  header.hero .eyebrow{
+    font-size: 12px; letter-spacing:0.18em; text-transform:uppercase; color: var(--gold-deep); font-weight:600;
+  }
+  header.hero h1{
+    font-size: clamp(38px, 6vw, 64px);
+    margin: 10px 0 18px;
+  }
+  header.hero p{
+    max-width: 640px;
+    margin: 0 auto;
+    color: var(--muted);
+    font-size: 15.5px;
+  }
+
+  section{ padding: 70px 8vw; }
+  section + section{ border-top: 1px solid var(--line); }
+
+  #about{ background: #fbf7ee; }
+  #gallery{ background: #f1ede3; }
+  #music{ background: #efe6f3; }
+  #catalog{ background: #fdf1df; }
+  #contact{ background: #eaf1ea; }
+  footer{ background: var(--ink); color: #cfc8bb; }
+  footer div{ color: inherit; }
+
+  .section-label{
+    font-size:12px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-deep); font-weight:600; margin-bottom:10px;
+  }
+  section h2{ font-size: clamp(26px, 3vw, 34px); margin-bottom: 26px; }
+
+  /* ===== About ===== */
+  .about-grid{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 50px;
+  }
+  .about-grid p{ color: var(--muted); font-size: 14.5px; margin-bottom: 14px; }
+  .highlight{
+    background: #fff2d8;
+    padding: 2px 4px;
+    border-radius: 2px;
+  }
+
+  /* ===== Gallery ===== */
+  .gallery{
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 18px;
+  }
+  .gallery figure{ text-align:center; }
+  .gallery img{
+    width:100%; height: 220px; object-fit:cover; border-radius: 6px;
+    border: 1px solid var(--line);
+  }
+  .gallery figcaption{
+    font-size: 11px; letter-spacing:0.08em; text-transform:uppercase; color: var(--muted); margin-top:8px;
+  }
+
+  .videos{
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-top: 34px;
+  }
+  .videos video{
+    width:100%; border-radius:6px; border:1px solid var(--line); background:#000;
+  }
+
+  /* ===== Music ===== */
+  .track-list{ list-style:none; display:flex; flex-direction:column; gap:16px; }
+  .track-list li{
+    background: var(--panel); border:1px solid var(--line); border-radius:8px;
+    padding: 14px 18px;
+  }
+  .track-list .track-name{ font-size:13px; font-weight:600; margin-bottom:8px; color: var(--ink); }
+  audio{ width:100%; }
+
+  /* ===== Product filters ===== */
+  .catalog-head{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:26px;
+  }
+  .filters{ display:flex; flex-wrap:wrap; gap:8px; }
+  .filter-btn{
+    background: var(--panel); border:1px solid var(--line); color: var(--muted);
+    font-family:'Inter',sans-serif; font-size:12.5px; font-weight:600;
+    padding: 9px 16px; border-radius: 999px; cursor:pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .filter-btn:hover{ border-color: var(--gold); color: var(--ink); }
+  .filter-btn.active{ background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  .cart-pill{
+    display:flex; align-items:center; gap:8px;
+    background: var(--panel); border:1px solid var(--line); border-radius:999px;
+    padding: 9px 16px; font-size:12.5px; font-weight:600; color: var(--ink);
+  }
+  .cart-pill .count{
+    background: var(--gold); color:#fff; border-radius:50%;
+    width:20px; height:20px; display:flex; align-items:center; justify-content:center; font-size:11px;
+  }
+
+  /* ===== Product cards ===== */
+  .product-grid{
+    display:grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 18px;
+  }
+  .product-card{
+    background: var(--panel); border:1px solid var(--line); border-radius:10px;
+    padding: 18px; display:flex; flex-direction:column; gap:6px;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+  .product-card:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(28,26,23,0.08);
+    border-color: var(--gold);
+  }
+  .product-card.hidden{ display:none; }
+  .product-card .pid{ font-size:11px; color: var(--muted); font-weight:600; }
+  .product-card .pname{ font-family:'Fraunces', serif; font-size: 17px; font-weight:600; }
+  .product-card .pmeta{ font-size:12px; color: var(--muted); display:flex; justify-content:space-between; }
+  .product-card .price{ font-size:15px; font-weight:600; color: var(--gold-deep); margin-top:4px; }
+  .product-card .add-btn{
+    margin-top:10px; background: transparent; border:1px solid var(--ink); color: var(--ink);
+    padding: 9px 12px; border-radius:6px; font-size:12px; font-weight:600; letter-spacing:0.03em;
+    text-transform:uppercase; cursor:pointer; transition: background 0.15s ease, color 0.15s ease;
+  }
+  .product-card .add-btn:hover{ background: var(--ink); color:#fff; }
+  .product-card .add-btn.added{ background: var(--gold-deep); color:#fff; border-color: var(--gold-deep); }
+
+  /* ===== Contact form ===== */
+  .contact-wrap{
+    display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 50px;
+  }
+  .contact-wrap p{ color:var(--muted); font-size:14px; margin-top:12px; }
+
+  form{
+    display:flex; flex-direction:column; gap:16px;
+    background: var(--panel); padding: 30px; border-radius:10px; border:1px solid var(--line);
+  }
+  label{ font-size:12px; text-transform:uppercase; letter-spacing:0.06em; color: var(--muted); margin-bottom:6px; display:block; }
+  input, select{
+    width:100%; padding: 11px 12px; border:1px solid var(--line); border-radius:6px;
+    background:#fff; font-family:'Inter',sans-serif; font-size:14px; color:var(--ink);
+  }
+  input:focus, select:focus{ outline:2px solid var(--gold); outline-offset:1px; }
+  button{
+    background: var(--ink); color:#fff; border:none; padding: 13px 20px;
+    font-size:14px; letter-spacing:0.04em; text-transform:uppercase; border-radius:6px; cursor:pointer;
+    font-family:'Inter',sans-serif; font-weight:600;
+  }
+  button:hover{ background: var(--gold-deep); }
+
+  /* ===== Footer ===== */
+  footer{
+    padding: 40px 8vw; text-align:center; font-size:12.5px; color: var(--muted);
+    border-top: 1px solid var(--line);
+  }
+  footer div{ margin-bottom:6px; }
+
+  @media (max-width: 800px){
+    .about-grid, .contact-wrap{ grid-template-columns: 1fr; }
+  }
+
+  /* ===== Scroll reveal ===== */
+  .reveal{
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in-view{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-stagger.in-view .product-card,
+  .reveal-stagger.in-view .gallery figure,
+  .reveal-stagger.in-view .videos video,
+  .reveal-stagger.in-view .track-list li{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-stagger .product-card,
+  .reveal-stagger .gallery figure,
+  .reveal-stagger .videos video,
+  .reveal-stagger .track-list li{
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  /* scroll progress bar */
+  #scrollProgress{
+    position: fixed; top:0; left:0; height:3px; width:0%;
+    background: var(--gold); z-index: 999;
+    transition: width 0.1s linear;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal, .reveal-stagger .product-card, .reveal-stagger .gallery figure,
+    .reveal-stagger .videos video, .reveal-stagger .track-list li{
+      opacity:1 !important; transform:none !important; transition:none !important;
+    }
   }
 </style>
 </head>
 <body>
-  <table>
-    <thead>
-      <tr>
-        <th>Product ID</th>
-        <th>Product Name</th>
-        <th>Category</th>
-        <th>Size</th>
-        <th>Price (KSh)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="id">P001</td>
-        <td>Classic T-Shirt</td>
-        <td>Men's Wear</td>
-        <td>M</td>
-        <td class="price">1,200</td>
-      </tr>
-      <tr>
-        <td class="id">P002</td>
-        <td>Denim Jacket</td>
-        <td>Women's Wear</td>
-        <td>L</td>
-        <td class="price">3,500</td>
-      </tr>
-      <tr>
-        <td class="id">P003</td>
-        <td>Hooded Sweatshirt</td>
-        <td>Unisex</td>
-        <td>XL</td>
-        <td class="price">2,800</td>
-      </tr>
-      <tr>
-        <td class="id">P004</td>
-        <td>Summer Dress</td>
-        <td>Women's Wear</td>
-        <td>S</td>
-        <td class="price">2,200</td>
-      </tr>
-      <tr>
-        <td class="id">P005</td>
-        <td>Cargo Trousers</td>
-        <td>Men's Wear</td>
-        <td>34</td>
-        <td class="price">2,600</td>
-      </tr>
-      <tr>
-        <td class="id">P006</td>
-        <td>Sports Shoes</td>
-        <td>Footwear</td>
-        <td>42</td>
-        <td class="price">4,500</td>
-      </tr>
-      <tr>
-        <td class="id">P007</td>
-        <td>Leather Belt</td>
-        <td>Accessories</td>
-        <td>One Size</td>
-        <td class="price">1,500</td>
-      </tr>
-      <tr>
-        <td class="id">P008</td>
-        <td>Wool Scarf</td>
-        <td>Accessories</td>
-        <td>One Size</td>
-        <td class="price">1,800</td>
-      </tr>
-    </tbody>
-  </table>.
- 
- <h4>Contact Form</h4>
-  <form action="#" method="POST">
-    <label for="name">Name</label><br>
-    <input type="text" id="name" name="name" placeholder="Enter your full name" required><br><br>
 
-    <label for="email">Email</label><br>
-    <input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
+  <div id="scrollProgress"></div>
 
-    <label for="country">Country</label><br>
-    <select id="country" name="country" required>
-      <option value="">-- Select your country --</option>
-      <option value="US">United States</option>
-      <option value="CA">Canada</option>
-      <option value="UK">United Kingdom</option>
-      <option value="AU">Australia</option>
-      <option value="PH">Philippines</option>
-      <option value="IN">India</option>
-      <option value="DE">Germany</option>
-      <option value="FR">France</option>
-      <option value="JP">Japan</option>
-      <option value="Other">Other</option>
-    </select><br><br>
+  <header class="hero">
+    <div class="eyebrow">Est. Nairobi, Kenya</div>
+    <h1>Clothes Store</h1>
+    <p>Welcome to our online clothing store, where fashion meets quality and affordability. We offer a wide selection of stylish clothing for men, women, and children, chosen to suit different tastes, occasions, and lifestyles.</p>
+  </header>
 
-    <label for="password">Password</label><br>
-    <input type="password" id="password" name="password" placeholder="Enter your password" required minlength="6"><br><br>
+  <section id="about" class="reveal">
+    <div class="section-label">Who we are</div>
+    <h2>About Us</h2>
+    <div class="about-grid">
+      <div>
+        <p>Our collection includes casual wear, formal attire, sportswear, seasonal outfits, and fashionable accessories designed to help you express your unique personality and style. Every product is chosen with comfort, durability, and modern trends in mind.</p>
+        <p>We believe everyone deserves to look and feel confident without spending a fortune — high-quality clothing at competitive prices, with online shopping made simple, secure, and convenient. Browse categories, compare products, and order from home.</p>
+      </div>
+      <div>
+        <p><span class="highlight">Our mission is to make fashion accessible to everyone by offering high-quality clothing at affordable prices.</span> We believe shopping should be easy, convenient, and enjoyable — a user-friendly website, secure checkout, and reliable delivery, every time.</p>
+        <p>Customer satisfaction is at the heart of everything we do: excellent service, fast order processing, and a smooth experience from browsing to delivery. Whether you're updating your wardrobe or shopping for a special occasion, thank you for choosing us.</p>
+      </div>
+    </div>
+  </section>
 
-    <button type="submit">Submit</button>
-  </form>
+  <section id="gallery" class="reveal reveal-stagger">
+    <div class="section-label">Look book</div>
+    <h2>Gallery — Photos &amp; Videos</h2>
+    <div class="gallery">
+      <figure>
+        <img src="IMG_20260804_105505.jpg" alt="Store photo 1">
+        <figcaption>1st</figcaption>
+      </figure>
+      <figure>
+        <img src="IMG_20260804_105516.jpg" alt="Store photo 2">
+        <figcaption>2nd</figcaption>
+      </figure>
+      <figure>
+        <img src="IMG_20260804_105709.jpg" alt="Store photo 3">
+        <figcaption>3rd</figcaption>
+      </figure>
+      <figure>
+        <img src="IMG_20260804_105718.jpg" alt="Store photo 4">
+        <figcaption>4th</figcaption>
+      </figure>
+      <figure>
+        <img src="IMG_20260804_105728.jpg" alt="Store photo 5">
+        <figcaption>5th</figcaption>
+      </figure>
+    </div>
+
+    <h3 style="margin-top:40px; margin-bottom:16px; font-size:18px;">Videos</h3>
+    <div class="videos">
+      <video src="VID_20260804_112053.mp4" controls></video>
+      <video src="VID_20260804_111943.mp4" controls></video>
+      <video src="Carrie Wahu_e70500ad0d4a43cbb8afc4060e46b688.mp4" controls></video>
+    </div>
+  </section>
+
+  <section id="music" class="reveal reveal-stagger">
+    <div class="section-label">On the playlist</div>
+    <h2>Music</h2>
+    <ul class="track-list">
+      <li>
+        <div class="track-name">Wish — Phillip Antony x Chuckyy</div>
+        <audio controls>
+          <source src="Phillip Antony - wish x chuckyy 2026-05-03 18_57.m4a" type="audio/mp4">
+          Your browser does not support the audio element.
+        </audio>
+      </li>
+      <li>
+        <div class="track-name">Masterpiece King — Phillip Antony</div>
+        <audio controls>
+          <source src="Phillip Antony - masterpiece king 2026-04-04 10_56.m4a" type="audio/mp4">
+          Your browser does not support the audio element.
+        </audio>
+      </li>
+    </ul>
+  </section>
+
+  <section id="catalog" class="reveal reveal-stagger">
+    <div class="catalog-head">
+      <div>
+        <div class="section-label">Shop</div>
+        <h2 style="margin-bottom:0;">Product Catalog</h2>
+      </div>
+      <div class="cart-pill">🛍 Cart <span class="count" id="cartCount">0</span></div>
+    </div>
+
+    <div class="filters" id="filterBar">
+      <button class="filter-btn active" data-filter="All">All</button>
+      <button class="filter-btn" data-filter="Men's Wear">Men's Wear</button>
+      <button class="filter-btn" data-filter="Women's Wear">Women's Wear</button>
+      <button class="filter-btn" data-filter="Unisex">Unisex</button>
+      <button class="filter-btn" data-filter="Footwear">Footwear</button>
+      <button class="filter-btn" data-filter="Accessories">Accessories</button>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+      <div class="product-card" data-category="Men's Wear">
+        <div class="pid">P001</div>
+        <div class="pname">Classic T-Shirt</div>
+        <div class="pmeta"><span>Men's Wear</span><span>Size M</span></div>
+        <div class="price">KSh 1,200</div>
+        <button class="add-btn">Add to cart</button>
+      </div>
+      <div class="product-card" data-category="Women's Wear">
+        <div class="pid">P002</div>
+        <div class="pname">Denim Jacket</div>
+        <div class="pmeta"><span>Women's Wear</span><span>Size L</span></div>
+        <div class="price">KSh 3,500</div>
+        <button class="add-btn">Add to cart</button>
+      </div>
+      <div class="product-card" data-category="Unisex">
+        <div class="pid">P003</div>
+        <div class="pname">Hooded Sweatshirt</div>
+        <div class="pmeta"><span>Unisex</span><span>Size XL</span></div>
+        <div class="price">KSh 2,800</div>
+        <button class="add-btn">Add to cart</button>
+      </div>
+      <div class="product-card" data-category="Women's Wear">
+        <div class="pid">P004</div>
+        <div class="pname">Summer Dress</div>
+        <div class="pmeta"><span>Women's Wear</span><span>Size S</span></div>
+        <div class="price">KSh 2,200</div>
+        <button class="add-btn">Add to cart</button>
+      </div>
+      <div class="product-card" data-category="Men's Wear">
+        <div class="pid">P005</div>
+        <div class="pname">Cargo Trousers</div>
+        <div class="pmeta"><span>Men's Wear</span><span>Size 34</span></div>
+        <div class="price">KSh 2,600</div>
+        <button class="add-btn">Add to cart</button>
+      </div>
+      <div class="product-card" data-category="Footwear">
+        <div class="pid">P006</div>
+        <div class="pname">Sports Shoes</div>
+        <div class="pmeta"><span>Footwear</span><span>Size 42</span></div>
+        <div class="price">KSh 4,500</div>
+        <button class="add-btn">Add to cart</button>
+      </div>
+      <div class="product-card" data-category="Accessories">
+        <div class="pid">P007</div>
+        <div class="pname">Leather Belt</div>
+        <div class="pmeta"><span>Accessories</span><span>One Size</span></div>
+        <div class="price">KSh 1,500</div>
+        <button class="add-btn">Add to cart</button>
+      </div>
+      <div class="product-card" data-category="Accessories">
+        <div class="pid">P008</div>
+        <div class="pname">Wool Scarf</div>
+        <div class="pmeta"><span>Accessories</span><span>One Size</span></div>
+        <div class="price">KSh 1,800</div>
+        <button class="add-btn">Add to cart</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="reveal">
+    <div class="contact-wrap">
+      <div>
+        <div class="section-label">Get in touch</div>
+        <h2>Contact Us</h2>
+        <p>Have a question about sizing, an order, or a bulk request? Send us a message and we'll get back to you as soon as we can.</p>
+      </div>
+      <form action="#" method="POST">
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div>
+          <label for="country">Country</label>
+          <select id="country" name="country" required>
+            <option value="">-- Select your country --</option>
+            <option value="KE">Kenya</option>
+            <option value="TZ">Tanzania</option>
+            <option value="UG">Uganda</option>
+            <option value="DRC">Congo</option>
+            <option value="RU">Russia</option>
+            <option value="US">United States</option>
+            <option value="UK">United Kingdom</option>
+            <option value="IN">India</option>
+            <option value="GE">Germany</option>
+            <option value="FR">France</option>
+            <option value="JP">Japan</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required minlength="6">
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </section>
+
   <footer>
-    <div class="location">Nairobi, Kenya.</div>
-    <div class="contact">0100664227.</div>
-    <div class="copyright">©2026 clothesstore.All Right Reserved.</div>
+    <div>Nairobi, Kenya</div>
+    <div>0100664227</div>
+    <div>© 2026 Clothes Store. All Rights Reserved.</div>
   </footer>
 
- 
+  <script>
+    // ---- Scroll progress bar ----
+    const progressBar = document.getElementById('scrollProgress');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.style.width = pct + '%';
+    });
+
+    // ---- Reveal on scroll ----
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // ---- Category filter ----
+    const filterBar = document.getElementById('filterBar');
+    const cards = document.querySelectorAll('.product-card');
+
+    filterBar.addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+
+      filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        const match = filter === 'All' || card.dataset.category === filter;
+        card.classList.toggle('hidden', !match);
+      });
+    });
+
+    // ---- Add to cart ----
+    let cartCount = 0;
+    const cartCountEl = document.getElementById('cartCount');
+
+    document.querySelectorAll('.add-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        cartCount++;
+        cartCountEl.textContent = cartCount;
+
+        const original = btn.textContent;
+        btn.textContent = 'Added ✓';
+        btn.classList.add('added');
+        btn.disabled = true;
+
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove('added');
+          btn.disabled = false;
+        }, 1200);
+      });
+    });
+
+    // ---- Contact form: lightweight inline feedback ----
+    const form = document.querySelector('#contact form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const original = submitBtn.textContent;
+      submitBtn.textContent = 'Message sent ✓';
+      submitBtn.disabled = true;
+      setTimeout(() => {
+        submitBtn.textContent = original;
+        submitBtn.disabled = false;
+        form.reset();
+      }, 1800);
+    });
+  </script>
+
 </body>
 </html>

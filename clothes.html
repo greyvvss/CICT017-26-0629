@@ -4,258 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
 <title>Clothes Store</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
-
-  :root{
-    --ink: #1c1a17;
-    --paper: #f7f4ee;
-    --panel: #ffffff;
-    --gold: #a8792f;
-    --gold-deep: #7c5a22;
-    --line: #e4ddd0;
-    --muted: #6f665a;
-  }
-
-  *{ box-sizing:border-box; margin:0; padding:0; }
-  body{
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
-  }
-  img{ max-width:100%; display:block; }
-
-  h1, h2, h3, h4{
-    font-family: 'Fraunces', serif;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-  }
-
-  a{ color: var(--gold-deep); }
-
-  /* ===== Header / Hero ===== */
-  header.hero{
-    padding: 90px 8vw 70px;
-    text-align:center;
-    border-bottom: 1px solid var(--line);
-  }
-  header.hero .eyebrow{
-    font-size: 12px; letter-spacing:0.18em; text-transform:uppercase; color: var(--gold-deep); font-weight:600;
-  }
-  header.hero h1{
-    font-size: clamp(38px, 6vw, 64px);
-    margin: 10px 0 18px;
-  }
-  header.hero p{
-    max-width: 640px;
-    margin: 0 auto;
-    color: var(--muted);
-    font-size: 15.5px;
-  }
-
-  section{ padding: 70px 8vw; }
-  section + section{ border-top: 1px solid var(--line); }
-
-  #about{ background: #fbf7ee; }
-  #gallery{ background: #f1ede3; }
-  #music{ background: #efe6f3; }
-  #catalog{ background: #fdf1df; }
-  #contact{ background: #eaf1ea; }
-  footer{ background: var(--ink); color: #cfc8bb; }
-  footer div{ color: inherit; }
-
-  .section-label{
-    font-size:12px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-deep); font-weight:600; margin-bottom:10px;
-  }
-  section h2{ font-size: clamp(26px, 3vw, 34px); margin-bottom: 26px; }
-
-  /* ===== About ===== */
-  .about-grid{
-    display:grid; grid-template-columns: 1fr 1fr; gap: 50px;
-  }
-  .about-grid p{ color: var(--muted); font-size: 14.5px; margin-bottom: 14px; }
-  .highlight{
-    background: #fff2d8;
-    padding: 2px 4px;
-    border-radius: 2px;
-  }
-
-  /* ===== Gallery ===== */
-  .gallery{
-    display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 18px;
-  }
-  .gallery figure{ text-align:center; }
-  .gallery img{
-    width:100%; height: 220px; object-fit:cover; border-radius: 6px;
-    border: 1px solid var(--line);
-  }
-  .gallery figcaption{
-    font-size: 11px; letter-spacing:0.08em; text-transform:uppercase; color: var(--muted); margin-top:8px;
-  }
-
-  .videos{
-    display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-top: 34px;
-  }
-  .videos video{
-    width:100%; border-radius:6px; border:1px solid var(--line); background:#000;
-  }
-
-  /* ===== Music ===== */
-  .track-list{ list-style:none; display:flex; flex-direction:column; gap:16px; }
-  .track-list li{
-    background: var(--panel); border:1px solid var(--line); border-radius:8px;
-    padding: 14px 18px;
-  }
-  .track-list .track-name{ font-size:13px; font-weight:600; margin-bottom:8px; color: var(--ink); }
-  audio{ width:100%; }
-
-  /* ===== Product filters ===== */
-  .catalog-head{
-    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:26px;
-  }
-  .filters{ display:flex; flex-wrap:wrap; gap:8px; }
-  .filter-btn{
-    background: var(--panel); border:1px solid var(--line); color: var(--muted);
-    font-family:'Inter',sans-serif; font-size:12.5px; font-weight:600;
-    padding: 9px 16px; border-radius: 999px; cursor:pointer;
-    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
-  }
-  .filter-btn:hover{ border-color: var(--gold); color: var(--ink); }
-  .filter-btn.active{ background: var(--ink); color: var(--paper); border-color: var(--ink); }
-
-  .cart-pill{
-    display:flex; align-items:center; gap:8px;
-    background: var(--panel); border:1px solid var(--line); border-radius:999px;
-    padding: 9px 16px; font-size:12.5px; font-weight:600; color: var(--ink);
-  }
-  .cart-pill .count{
-    background: var(--gold); color:#fff; border-radius:50%;
-    width:20px; height:20px; display:flex; align-items:center; justify-content:center; font-size:11px;
-  }
-
-  /* ===== Product cards ===== */
-  .product-grid{
-    display:grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 18px;
-  }
-  .product-card{
-    background: var(--panel); border:1px solid var(--line); border-radius:10px;
-    padding: 18px; display:flex; flex-direction:column; gap:6px;
-    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-  }
-  .product-card:hover{
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(28,26,23,0.08);
-    border-color: var(--gold);
-  }
-  .product-card.hidden{ display:none; }
-  .product-card .pid{ font-size:11px; color: var(--muted); font-weight:600; }
-  .product-card .pname{ font-family:'Fraunces', serif; font-size: 17px; font-weight:600; }
-  .product-card .pmeta{ font-size:12px; color: var(--muted); display:flex; justify-content:space-between; }
-  .product-card .price{ font-size:15px; font-weight:600; color: var(--gold-deep); margin-top:4px; }
-  .product-card .add-btn{
-    margin-top:10px; background: transparent; border:1px solid var(--ink); color: var(--ink);
-    padding: 9px 12px; border-radius:6px; font-size:12px; font-weight:600; letter-spacing:0.03em;
-    text-transform:uppercase; cursor:pointer; transition: background 0.15s ease, color 0.15s ease;
-  }
-  .product-card .add-btn:hover{ background: var(--ink); color:#fff; }
-  .product-card .add-btn.added{ background: var(--gold-deep); color:#fff; border-color: var(--gold-deep); }
-
-  /* ===== Contact form ===== */
-  .contact-wrap{
-    display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 50px;
-  }
-  .contact-wrap p{ color:var(--muted); font-size:14px; margin-top:12px; }
-
-  form{
-    display:flex; flex-direction:column; gap:16px;
-    background: var(--panel); padding: 30px; border-radius:10px; border:1px solid var(--line);
-  }
-  label{ font-size:12px; text-transform:uppercase; letter-spacing:0.06em; color: var(--muted); margin-bottom:6px; display:block; }
-  input, select{
-    width:100%; padding: 11px 12px; border:1px solid var(--line); border-radius:6px;
-    background:#fff; font-family:'Inter',sans-serif; font-size:14px; color:var(--ink);
-  }
-  input:focus, select:focus{ outline:2px solid var(--gold); outline-offset:1px; }
-  button{
-    background: var(--ink); color:#fff; border:none; padding: 13px 20px;
-    font-size:14px; letter-spacing:0.04em; text-transform:uppercase; border-radius:6px; cursor:pointer;
-    font-family:'Inter',sans-serif; font-weight:600;
-  }
-  button:hover{ background: var(--gold-deep); }
-
-  /* ===== Footer ===== */
-  footer{
-    padding: 40px 8vw; text-align:center; font-size:12.5px; color: var(--muted);
-    border-top: 1px solid var(--line);
-  }
-  footer div{ margin-bottom:6px; }
-
-  @media (max-width: 800px){
-    .about-grid, .contact-wrap{ grid-template-columns: 1fr; }
-  }
-
-  /* ===== Scroll reveal ===== */
-  .reveal{
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.in-view{
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .reveal-stagger.in-view .product-card,
-  .reveal-stagger.in-view .gallery figure,
-  .reveal-stagger.in-view .videos video,
-  .reveal-stagger.in-view .track-list li{
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .reveal-stagger .product-card,
-  .reveal-stagger .gallery figure,
-  .reveal-stagger .videos video,
-  .reveal-stagger .track-list li{
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  /* scroll progress bar */
-  #scrollProgress{
-    position: fixed; top:0; left:0; height:3px; width:0%;
-    background: var(--gold); z-index: 999;
-    transition: width 0.1s linear;
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    .reveal, .reveal-stagger .product-card, .reveal-stagger .gallery figure,
-    .reveal-stagger .videos video, .reveal-stagger .track-list li{
-      opacity:1 !important; transform:none !important; transition:none !important;
-    }
-  }
-
-  /* ===================================================
-     Question 2: Internal CSS
-     - background color, h2 color, paragraph size,
-       page font, and centered h1 headings
-  =================================================== */
-  body{
-    background-color: #f0f8ff;
-    font-family: Arial, sans-serif;
-  }
-  h2{
-    color: #7c5a22;
-  }
-  p{
-    font-size: 18px;
-  }
-  h1{
-    text-align: center;
-  }
-</style>
 </head>
 <body>
 
@@ -270,17 +19,17 @@
 
   <header class="hero">
     <div class="eyebrow">Est. Nairobi, Kenya</div>
-    <h1 style="color: blue; text-align: center;">Clothes Store</h1>
+    <h1>Clothes Store</h1>
     <p>Welcome to our online clothing store, where fashion meets quality and affordability. We offer a wide selection of stylish clothing for men, women, and children, chosen to suit different tastes, occasions, and lifestyles.</p>
   </header>
 
   <section id="about" class="reveal">
     <div class="section-label">Who we are</div>
-    <h2 style="background-color: #fff2d8;">About Us</h2>
+    <h2>About Us</h2>
     <div class="about-grid">
       <div>
-        <p style="color: green;">Our collection includes casual wear, formal attire, sportswear, seasonal outfits, and fashionable accessories designed to help you express your unique personality and style. Every product is chosen with comfort, durability, and modern trends in mind.</p>
-        <p style="font-size: 20px;">We believe everyone deserves to look and feel confident without spending a fortune — high-quality clothing at competitive prices, with online shopping made simple, secure, and convenient. Browse categories, compare products, and order from home.</p>
+        <p>Our collection includes casual wear, formal attire, sportswear, seasonal outfits, and fashionable accessories designed to help you express your unique personality and style. Every product is chosen with comfort, durability, and modern trends in mind.</p>
+        <p>We believe everyone deserves to look and feel confident without spending a fortune — high-quality clothing at competitive prices, with online shopping made simple, secure, and convenient. Browse categories, compare products, and order from home.</p>
       </div>
       <div>
         <p><span class="highlight">Our mission is to make fashion accessible to everyone by offering high-quality clothing at affordable prices.</span> We believe shopping should be easy, convenient, and enjoyable — a user-friendly website, secure checkout, and reliable delivery, every time.</p>
@@ -315,7 +64,7 @@
       </figure>
     </div>
 
-    <h3 style="margin-top:40px; margin-bottom:16px; font-size:18px;">Videos</h3>
+    <h3>Videos</h3>
     <div class="videos">
       <video src="VID_20260804_112053.mp4" controls></video>
       <video src="VID_20260804_111943.mp4" controls></video>
@@ -348,7 +97,7 @@
     <div class="catalog-head">
       <div>
         <div class="section-label">Shop</div>
-        <h2 style="margin-bottom:0;">Product Catalog</h2>
+        <h2>Product Catalog</h2>
       </div>
       <div class="cart-pill">🛍 Cart <span class="count" id="cartCount">0</span></div>
     </div>

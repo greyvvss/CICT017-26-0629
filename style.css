@@ -4,7 +4,7 @@ body {
 }
 
 h1, h2, h3, h4 {
-  font-family: 'Georgia', serif;
+  font-family: 'Georgia', roboto-black;
   color: #2c3e50;
   letter-spacing: 0.5px;
 }

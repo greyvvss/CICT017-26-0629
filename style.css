@@ -44,3 +44,76 @@ body, input, select, button {
 h1, h2 {
   font-family: 'Georgia', serif;
 }
+
+.section-label {
+  color: #a8792f;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+ 
+#cartCount {
+  background-color: #d9534f;
+  color: #ffffff;
+  border-radius: 50%;
+}
+ 
+#profileImage {
+  width: 220px;
+  border: 3px dotted #a8792f;
+  padding: 6px;
+  margin: 10px;
+  max-width: 100%;
+  height: auto;
+}
+ 
+.main-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  background-color: #1c1a17;
+  padding: 16px;
+}
+ 
+.main-nav a {
+  color: #f7f4ee;
+  font-weight: 600;
+  text-decoration: none;
+}
+ 
+.main-nav a:hover {
+  color: #a8792f;
+}
+ 
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+ 
+.card {
+  border: 1px solid #e4ddd0;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+}
+ 
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+ 
+  .main-nav {
+    flex-direction: column;
+    gap: 12px;
+  }
+ 
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+ 
+  p {
+    font-size: 15px;
+  }
+}

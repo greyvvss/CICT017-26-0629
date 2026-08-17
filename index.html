@@ -236,6 +236,30 @@
     text-transform:uppercase;
   }
 
+  /* ---------- interactive spider (full-page overlay) ---------- */
+  #spiderCanvas{
+    position:fixed;
+    inset:0;
+    width:100vw;
+    height:100vh;
+    pointer-events:none;
+    z-index:9999;
+  }
+  .spider-caption{
+    padding:0 clamp(20px,5vw,56px) 70px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.74rem;
+    color:rgba(237,239,234,0.45);
+  }
+  .spider-caption b{
+    display:block;
+    font-size:0.78rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--acid);
+    margin-bottom:8px;
+  }
+
   footer{
     padding:26px clamp(20px,5vw,56px);
     border-top:1px solid var(--line);
@@ -289,9 +313,12 @@
     <div class="frame reveal">
       <div class="corner tl"></div>
       <div class="corner br"></div>
+      <!-- To use a real photo: replace the placeholder div below with
+           <img src="DSC_0641.JPG" alt="Phillip Antony Muyuyi">
+           Keeping them separate avoids a broken-image icon when no photo file is present. -->
       <div class="placeholder">
         <b>Photo slot 3:4</b>
-        <img src="DSC_0641.JPG" alt="Phillip Antony Muyuyi">
+        Drop in your photo here
       </div>
     </div>
   </section>
@@ -343,6 +370,11 @@
     </div>
   </section>
 
+  <section class="spider-caption reveal">
+    <b>Interactive Spider 🕷️</b>
+    It roams the whole page — move your cursor anywhere (or drag on mobile).
+  </section>
+
   <footer>
     <span>© Phillip Antony Muyuyi</span>
     <a class="social-link" href="https://www.instagram.com/anthxnyfwu" target="_blank" rel="noopener noreferrer">
@@ -356,6 +388,8 @@
     <span>Built with HTML &amp; CSS</span>
   </footer>
 
+  <canvas id="spiderCanvas"></canvas>
+
   <script>
     // animate skill bars in on load, respecting reduced motion
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -367,6 +401,221 @@
         });
       });
     }
+  </script>
+
+  <script>
+    // ---------- Interactive Spider (procedural leg IK, full-page overlay) ----------
+    (function(){
+      const canvas = document.getElementById('spiderCanvas');
+      const ctx = canvas.getContext('2d');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      let W = 0, H = 0, DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+      function resize(){
+        W = window.innerWidth;
+        H = window.innerHeight;
+        canvas.width = W * DPR;
+        canvas.height = H * DPR;
+        canvas.style.width = W + 'px';
+        canvas.style.height = H + 'px';
+        ctx.setTransform(DPR,0,0,DPR,0,0);
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      // colors pulled from CSS custom properties
+      const styles = getComputedStyle(document.documentElement);
+      const acid = styles.getPropertyValue('--acid').trim() || '#C6FF3A';
+      const coral = styles.getPropertyValue('--coral').trim() || '#FF5B4A';
+
+      const body = { x: W/2, y: H/2, angle: 0 };
+      let target = { x: W/2, y: H/2 };
+      let hasPointer = false;
+      let wanderT = 0;
+
+      function setTarget(clientX, clientY){
+        target.x = clientX;
+        target.y = clientY;
+        hasPointer = true;
+      }
+      // canvas has pointer-events:none, so listen on the window to track the cursor anywhere on the page
+      window.addEventListener('mousemove', e => setTarget(e.clientX, e.clientY));
+      window.addEventListener('touchmove', e => {
+        if (e.touches[0]) setTarget(e.touches[0].clientX, e.touches[0].clientY);
+      }, { passive:true });
+      window.addEventListener('touchstart', e => {
+        if (e.touches[0]) setTarget(e.touches[0].clientX, e.touches[0].clientY);
+      }, { passive:true });
+
+      // 8 legs, angle offsets in degrees relative to facing direction (0 = forward)
+      const legAngles = [ -40, -75, -110, -145, 40, 75, 110, 145 ];
+      const SEG1 = 30, SEG2 = 34;
+      const ATTACH_R = 14;
+      const REST_R = 58;
+      const STEP_THRESHOLD = 38;
+      const STEP_SPEED = 0.14;
+
+      const legs = legAngles.map((a, i) => {
+        const rad = a * Math.PI/180;
+        const startX = body.x + Math.cos(rad) * REST_R;
+        const startY = body.y + Math.sin(rad) * REST_R;
+        return {
+          angle: a,
+          group: i % 2,
+          target: { x: startX, y: startY },
+          stepStart: { x: startX, y: startY },
+          stepEnd: { x: startX, y: startY },
+          stepping: false,
+          stepT: 0
+        };
+      });
+
+      function dir(deg){
+        const r = deg * Math.PI/180;
+        return { x: Math.cos(r), y: Math.sin(r) };
+      }
+
+      // analytic 2-bone IK: returns elbow joint position
+      function solveElbow(sx, sy, tx, ty, l1, l2, bend){
+        let dx = tx - sx, dy = ty - sy;
+        let d = Math.sqrt(dx*dx + dy*dy);
+        d = Math.max(Math.abs(l1-l2) + 0.01, Math.min(l1 + l2 - 0.01, d));
+        const a = Math.atan2(dy, dx);
+        const cosAngleA = (l1*l1 + d*d - l2*l2) / (2*l1*d);
+        const angleA = Math.acos(Math.max(-1, Math.min(1, cosAngleA)));
+        const elbowAngle = a + angleA * bend;
+        return { x: sx + Math.cos(elbowAngle)*l1, y: sy + Math.sin(elbowAngle)*l1 };
+      }
+
+      let anyStepping = { 0:false, 1:false };
+      let lastTime = performance.now();
+
+      function update(dt){
+        // body eases toward target (or gently wanders if no pointer yet)
+        let goalX = target.x, goalY = target.y;
+        if (!hasPointer){
+          wanderT += dt * 0.0005;
+          goalX = W/2 + Math.cos(wanderT) * (W*0.32);
+          goalY = H/2 + Math.sin(wanderT*1.3) * (H*0.28);
+        }
+        const dx = goalX - body.x, dy = goalY - body.y;
+        const dist = Math.sqrt(dx*dx+dy*dy);
+        const ease = reduceMotion ? 1 : 0.06;
+        body.x += dx * ease;
+        body.y += dy * ease;
+        if (dist > 2){
+          const targetAngle = Math.atan2(dy, dx) * 180/Math.PI;
+          let diff = ((targetAngle - body.angle + 540) % 360) - 180;
+          body.angle += diff * 0.12;
+        }
+
+        anyStepping[0] = legs.some(l => l.group===0 && l.stepping);
+        anyStepping[1] = legs.some(l => l.group===1 && l.stepping);
+
+        legs.forEach(leg => {
+          const idealAngle = leg.angle + body.angle;
+          const d = dir(idealAngle);
+          const idealX = body.x + d.x * REST_R;
+          const idealY = body.y + d.y * REST_R;
+
+          if (leg.stepping){
+            leg.stepT += STEP_SPEED;
+            if (leg.stepT >= 1){
+              leg.stepT = 1;
+              leg.stepping = false;
+              leg.target.x = leg.stepEnd.x;
+              leg.target.y = leg.stepEnd.y;
+            } else {
+              const t = leg.stepT;
+              const ease2 = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+              leg.target.x = leg.stepStart.x + (leg.stepEnd.x - leg.stepStart.x) * ease2;
+              leg.target.y = leg.stepStart.y + (leg.stepEnd.y - leg.stepStart.y) * ease2 - Math.sin(t*Math.PI) * 16;
+            }
+          } else {
+            const ddx = idealX - leg.target.x, ddy = idealY - leg.target.y;
+            const distOff = Math.sqrt(ddx*ddx + ddy*ddy);
+            if (distOff > STEP_THRESHOLD && !anyStepping[leg.group]){
+              leg.stepping = true;
+              leg.stepT = 0;
+              leg.stepStart.x = leg.target.x;
+              leg.stepStart.y = leg.target.y;
+              // overshoot slightly in the direction of travel for a natural stride
+              leg.stepEnd.x = idealX + d.x * 12;
+              leg.stepEnd.y = idealY + d.y * 12;
+              anyStepping[leg.group] = true;
+            }
+          }
+        });
+      }
+
+      function draw(){
+        ctx.clearRect(0,0,W,H);
+
+        legs.forEach(leg => {
+          const rad = (leg.angle + body.angle) * Math.PI/180;
+          const sx = body.x + Math.cos(rad) * ATTACH_R;
+          const sy = body.y + Math.sin(rad) * ATTACH_R;
+          const bend = leg.angle < 0 ? -1 : 1;
+          const elbow = solveElbow(sx, sy, leg.target.x, leg.target.y, SEG1, SEG2, bend);
+
+          ctx.strokeStyle = 'rgba(237,239,234,0.8)';
+          ctx.lineWidth = 2;
+          ctx.lineCap = 'round';
+          ctx.beginPath();
+          ctx.moveTo(sx, sy);
+          ctx.lineTo(elbow.x, elbow.y);
+          ctx.lineTo(leg.target.x, leg.target.y);
+          ctx.stroke();
+
+          ctx.fillStyle = leg.stepping ? coral : 'rgba(198,255,58,0.75)';
+          ctx.beginPath();
+          ctx.arc(leg.target.x, leg.target.y, 2.2, 0, Math.PI*2);
+          ctx.fill();
+        });
+
+        // body (abdomen + head)
+        const rad = body.angle * Math.PI/180;
+        const headX = body.x + Math.cos(rad) * 16;
+        const headY = body.y + Math.sin(rad) * 16;
+        const abdX = body.x - Math.cos(rad) * 16;
+        const abdY = body.y - Math.sin(rad) * 16;
+
+        ctx.fillStyle = '#0B0F14';
+        ctx.strokeStyle = acid;
+        ctx.lineWidth = 1.5;
+
+        ctx.beginPath();
+        ctx.ellipse(abdX, abdY, 17, 12, rad, 0, Math.PI*2);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.ellipse(headX, headY, 9, 8, rad, 0, Math.PI*2);
+        ctx.fill();
+        ctx.stroke();
+
+        // eyes
+        ctx.fillStyle = acid;
+        const eyeOffset = 4;
+        [-1,1].forEach(s => {
+          const ex = headX + Math.cos(rad + s*0.6) * eyeOffset + Math.cos(rad)*3;
+          const ey = headY + Math.sin(rad + s*0.6) * eyeOffset + Math.sin(rad)*3;
+          ctx.beginPath();
+          ctx.arc(ex, ey, 1.6, 0, Math.PI*2);
+          ctx.fill();
+        });
+      }
+
+      function loop(now){
+        const dt = now - lastTime;
+        lastTime = now;
+        update(dt);
+        draw();
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+    })();
   </script>
 
 </body>

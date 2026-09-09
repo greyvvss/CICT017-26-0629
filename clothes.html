@@ -16,24 +16,6 @@
     <h1>Clothes Store</h1>
     <p>Welcome to our online clothing store, where fashion meets quality and affordability. We offer a wide selection of stylish clothing for men, women, and children, chosen to suit different tastes, occasions, and lifestyles.</p>
   </header>
-
-    const themeToggle = document.getElementById('themeToggle');
-    const root = document.documentElement;
-
-    function setTheme(theme){
-      root.setAttribute('data-theme', theme);
-      themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
-      localStorage.setItem('storeTheme', theme);
-    }
-
-    const savedTheme = localStorage.getItem('storeTheme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
-
-    themeToggle.addEventListener('click', () => {
-      const current = root.getAttribute('data-theme');
-      setTheme(current === 'dark' ? 'light' : 'dark');
-    });
   
 <nav class="main-nav">
     <a href="#about">Home</a>

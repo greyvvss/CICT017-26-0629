@@ -362,20 +362,9 @@
     <span>Built with HTML &amp; CSS</span>
   </footer>
 
-  <canvas id="spiderCanvas"></canvas>
+ 
 
-  <script>
-    
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      window.addEventListener('load', () => {
-        document.querySelectorAll('.fill').forEach(el => {
-          const w = el.style.width;
-          el.style.width = '0%';
-          requestAnimationFrame(() => setTimeout(() => { el.style.width = w; }, 300));
-        });
-      });
-    }
-  </script>
+
 
 
 

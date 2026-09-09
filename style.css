@@ -1,6 +1,58 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
 
+/* Navigation section */
+.main-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    background-color: #111;
+    padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Navigation links */
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+
+    padding: 10px 20px;
+    border-radius: 8px;
+
+    transition: 0.3s;
+}
+
+/* When mouse is over a link */
+.main-nav a:hover {
+    background-color: white;
+    color: #111;
+}
+
+/* Active/current-looking link */
+.main-nav a:active {
+    background-color: #555;
+    color: white;
+}
+
+/* Make navigation fit smaller screens */
+@media (max-width: 600px) {
+    .main-nav {
+        gap: 5px;
+        flex-wrap: wrap;
+    }
+
+    .main-nav a {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+}
+
 :root{
   --ink: #1c1a17;
   --paper: #f7f4ee;

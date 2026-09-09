@@ -124,6 +124,7 @@ header.hero p{
 section{ padding: 70px 8vw; }
 section + section{ border-top: 1px solid var(--line); }
 
+#home{ background:#f2e6e9; }
 #about{ background: #fbf7ee; }
 #gallery{ background: #f1ede3; }
 #music{ background: #efe6f3; }

@@ -41,3 +41,31 @@ cashOutBtn.addEventListener('click', () => {
 closeModalBtn.addEventListener('click', () => {
   cashOutModal.classList.add('hidden');
 });
+const cartTotalDisplay = document.getElementById('cartTotalDisplay');
+
+document.querySelectorAll('.add-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const card = btn.closest('.product-card');
+    const name = card.querySelector('.pname').textContent;
+    const priceText = card.querySelector('.price').textContent;
+    const price = parseInt(priceText.replace(/[^\d]/g, ''), 10);
+
+    cartItems.push({ name, price });
+    cartCountEl.textContent = cartItems.length;
+
+    // live-update total on the page
+    const runningTotal = cartItems.reduce((sum, item) => sum + item.price, 0);
+    cartTotalDisplay.textContent = `KSh ${runningTotal.toLocaleString()}`;
+
+    const original = btn.textContent;
+    btn.textContent = 'Added ✓';
+    btn.classList.add('added');
+    btn.disabled = true;
+
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.classList.remove('added');
+      btn.disabled = false;
+    }, 1200);
+  });
+});

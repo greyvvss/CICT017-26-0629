@@ -293,3 +293,36 @@ footer div{ margin-bottom:6px; }
     opacity:1 !important; transform:none !important; transition:none !important;
   }
 }
+.cashout-btn {
+  margin-left: 10px;
+  padding: 4px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-overlay.hidden { display: none; }
+
+.modal-box {
+  background: #fff;
+  padding: 24px 32px;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 260px;
+}
+
+.modal-total {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin: 12px 0;
+}

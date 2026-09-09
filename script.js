@@ -1,10 +1,10 @@
 function darkMode() {
-    document.body.style.backgroundColor = "black";
-    document.body.style.color = "white";
+    document.body.style.backgroundColor ="black";
+    document.body.style.color ="white";
 }
 
 
 function lightMode() {
-    document.body.style.backgroundColor = "white";
-    document.body.style.color = "black";
+    document.body.style.backgroundColor ="white";
+    document.body.style.color ="black";
 }
